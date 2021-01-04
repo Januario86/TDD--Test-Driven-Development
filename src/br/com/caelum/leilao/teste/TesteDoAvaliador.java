@@ -1,13 +1,18 @@
 package br.com.caelum.leilao.teste;
 
+import org.junit.Assert;
+import org.junit.Test;
+
 import br.com.caelum.leilao.dominio.Lance;
 import br.com.caelum.leilao.dominio.Leilao;
 import br.com.caelum.leilao.dominio.Usuario;
 import br.com.caelum.leilao.servico.Avaliador;
 
 public class TesteDoAvaliador {
-
-	public static void main(String[] args) {
+	
+	@Test
+	public void deveEntenderLancesEmOrdemCrescente() {
+	
 		Usuario joao = new Usuario("João");
 		Usuario jose = new Usuario("José");
 		Usuario maria = new Usuario("Maria");
@@ -21,7 +26,17 @@ public class TesteDoAvaliador {
 		Avaliador leiloeiro = new Avaliador();
 		leiloeiro.avalia(leilao);
 		
-		System.out.println(leiloeiro.getMaiorLance());
+		double maiorEsperado = 400;
+		double menorEsperado = 250;
+		
+		System.out.println(maiorEsperado);
+		System.out.println(menorEsperado);
+		
+		//System.out.println(maiorEsperado == leiloeiro.getMaiorLance());
+		Assert.assertEquals(maiorEsperado, leiloeiro.getMaiorLance(),0.00001);
+		
+		//System.out.println(menorEsperado == leiloeiro.getMenorLance());
+		Assert.assertEquals(menorEsperado, leiloeiro.getMenorLance(),0.00001);
 		
 
 	}
